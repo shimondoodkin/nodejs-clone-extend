@@ -19,7 +19,13 @@ http://github.com/shimondoodkin/nodejs-clone-extend
 ## replace
     // function replace(a, b)
     //  for (key in b) a[key] = b[key];
-    
+
+    var _ = require('merger');  
+    var obj1={apples:10};
+    var obj2={apples:20,bananas:20};
+    _.replace(obj1,obj2);
+
+    // obj1 = {apples:20,bananas:20}
 
 ## add - adds if not exists
  this function does not replace elements if they are exists
@@ -29,6 +35,13 @@ http://github.com/shimondoodkin/nodejs-clone-extend
     //   if(typeof a[key] === 'undefined' || a[key]===null)
     //     a[key] = b[key];
 
+    var _ = require('merger');  
+    var obj1={apples:10};
+    var obj2={apples:20,bananas:20};
+    _.replace(obj1,obj2);
+
+    // obj1 = {apples:10,bananas:20}
+
 ## extend
  this function merges second object in to the first and returns
  the first object by reference (objects are always reference)
@@ -37,12 +50,15 @@ http://github.com/shimondoodkin/nodejs-clone-extend
     // function extend(a, b)
     
     var _ = require('merger');  
-    var obj1={candy:chocolate_obj,  fruit:bannana_obj};
-    var obj2={fruit:orange_obj2, vegitible:cucumber_obj2};
-    _.extend(obj1,obj2);
+    var basket1={ apples:[{taste:'sour'},{taste:'sweet'}], fruit:'appricot' };
+    var basket2={ fruit:'orange', vegetable:'cucumber'};
+    _.extend(basket2,basket1);
     
-    // obj1 = { candy:chocolate_obj,  fruit:orange_obj2 , vegitible:cucumber_obj2 }
-
+    // basket2 = { apples:[{taste:'sour'},{taste:'sweet'}], fruit:'appricot' , vegetable:'cucumber' }
+    // apples    // added
+    // fruit     // replaced
+    // vegetable // stayed
+    
 ## extenduptolevel - extend up to level
  this function clones elements and creates new parent objects when they are missing.
  after the level is reached it starts to repace objects insted of creating new parents and refilling them.
@@ -90,9 +106,7 @@ http://github.com/shimondoodkin/nodejs-clone-extend
     var new_salad_v2=_.cloneextend(salad_basic,{syrop:'chocolate syrop'});
     
     // new_salad_v1 = {fruit:'apple',syrop:'maple syrop'}
-    // new_salad_v2 = {fruit:'apple',syrop:'chocolate syrop'} 
-    // obj3 = {saynumber:7,othernumber:5} // new
-    
+    // new_salad_v2 = {fruit:'apple',syrop:'chocolate syrop'}    
 
 ## cloneuptolevel - clone up to level
 
