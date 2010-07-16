@@ -13,18 +13,18 @@
     var b={x:2,y:{z:'Shimon Doodkin',},w:{v:3},deepone:{f:{o:2}}};
     var c;
 
-## replce
+## replace
 
     // function replace(a, b)
     //  for (key in b) a[key] = b[key];
-   a=_.replace(a,b);
-   // a={x:2,y:ref{z:'Shimon Doodkin',},w:ref{v:3},deepone:{f:{o:2}},};
+    a=_.replace(a,b);
+    // a={x:2,y:ref{z:'Shimon Doodkin',},w:ref{v:3},deepone:{f:{o:2}},};
 
 ## add
-   // function add(a, b)
-   //  for (key in b)
-   //   if(typeof a[key] === 'undefined' || a[key]===null)
-   //     a[key] = b[key];
+    // function add(a, b)
+    //  for (key in b)
+    //   if(typeof a[key] === 'undefined' || a[key]===null)
+    //     a[key] = b[key];
 
 a=_.add(a,b);
 // a={x:1,y:ref{z:'Shimon Doodkin',},w:{h:1},deepone:{f:{o:2}},};
