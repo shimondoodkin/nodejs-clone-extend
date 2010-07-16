@@ -64,7 +64,7 @@ if you want to modify values after second dot write 2 in the level
     // a={x:1,w:{h:1},somenew:1,};
     // c=new{x:1,w:new{h:1},othernew:2,};
 
-## cloneextend
+## cloneextend - clone and then extend
 
     // function cloneextend(obj,exteddata)
     //   extend(clone(obj),exteddata);
