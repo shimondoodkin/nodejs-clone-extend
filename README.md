@@ -17,10 +17,11 @@
 
     // function replace(a, b)
     //  for (key in b) a[key] = b[key];
+    
     a=_.replace(a,b);
     // a={x:2,y:ref{z:'Shimon Doodkin',},w:ref{v:3},deepone:{f:{o:2}},};
 
-## add
+## add - adds if not exists
     // function add(a, b)
     //  for (key in b)
     //   if(typeof a[key] === 'undefined' || a[key]===null)
@@ -33,12 +34,19 @@
 this function merges second object in to the first and returns the fitst object (objects are always reference)
 
     // function extend(a, b)
+    
     a=_.extend(a,b);
     // a={x:2,y:ref{z:'Shimon Doodkin',},w:{h:1,v:3},deepone:{f:{o:2}},};
 
-## extenduptolevel
+## extenduptolevel - extend up to level
+this function allows you to clone only the 1st level 
+and let the second level to be references.
+
+rememberence trick:
+if you want to modify values after second dot write 2 in the level
 
     // function extenduptolevel(a, b, levels)
+    
     a=_.extenduptolevel(a,b,2);
     // a={x:2,y:ref{z:'Shimon Doodkin',},w:{h:1,v:3},deepone:new{f:ref{o:2}},};
     a.deepone.somenew=1;
@@ -49,6 +57,7 @@ this function merges second object in to the first and returns the fitst object 
 ##  clone
     // function clone(obj)
     //   extend({}, obj);
+    
     c=clone(a);
     a.somenew=1;
     c.othernew=2;
@@ -59,6 +68,7 @@ this function merges second object in to the first and returns the fitst object 
 
     // function cloneextend(obj,exteddata)
     //   extend(clone(obj),exteddata);
+    
     c=cloneextend(a,{othernew:2,});
     // c=new{x:1,w:new{h:1},othernew:2,};
 
@@ -67,6 +77,7 @@ this function merges second object in to the first and returns the fitst object 
     // // clone only numlevels levels other levels leave references
     // function cloneuptolevel(obj,level)
     //   extenduptolevel({}, obj, levels)
+    
     c=_.extenduptolevel(a,{deepone:{othernew:2}},2);
     // c={x:2,y:ref{z:'Shimon Doodkin',},w{h:1,v:3},deepone:new{f:new{o:2},othernew:2},};
  
