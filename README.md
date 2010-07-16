@@ -25,9 +25,9 @@
     //  for (key in b)
     //   if(typeof a[key] === 'undefined' || a[key]===null)
     //     a[key] = b[key];
-
-a=_.add(a,b);
-// a={x:1,y:ref{z:'Shimon Doodkin',},w:{h:1},deepone:{f:{o:2}},};
+    
+    a=_.add(a,b);
+    // a={x:1,y:ref{z:'Shimon Doodkin',},w:{h:1},deepone:{f:{o:2}},};
 
 ## extend
 this function merges second object in to the first and returns the fitst object (objects are always reference)
