@@ -1,76 +1,98 @@
-# Node.js Clone Extend
+http://github.com/shimondoodkin/nodejs-clone-extend
 
-* It is what you ware searching for...
-* It allows you to merge and clone javascript objects easyly.
-* It supports cyclic references.
+# Node.js Clone Extend
+ * It is what you ware searching for ... 
+ * It allows you to merge and clone javascript objects easyly.
+ * It supports circular references.
 
 ## include it!
     require.paths.unshift(__dirname); //make local paths accessible
 
     // just make it as maybe it is like underline or a short variable name for it;
     var _ = require('merger');  
-    var a={x:1,w:{h:1}};
-    var b={x:2,y:{z:'Shimon Doodkin',},w:{v:3},deepone:{f:{o:2}}};
-    var c;
+    var obj1={apples:10};
+    var obj2={bananas:20};
+    _.extend(obj1,obj2); // merge called extend
+
+    // obj1 = {apples:10,bananas:20}
 
 ## replace
-
     // function replace(a, b)
     //  for (key in b) a[key] = b[key];
     
-    a=_.replace(a,b);
-    // a={x:2,y:ref{z:'Shimon Doodkin',},w:ref{v:3},deepone:{f:{o:2}},};
 
 ## add - adds if not exists
+ this function does not replace elements if they are exists
+
     // function add(a, b)
     //  for (key in b)
     //   if(typeof a[key] === 'undefined' || a[key]===null)
     //     a[key] = b[key];
-    
-    a=_.add(a,b);
-    // a={x:1,y:ref{z:'Shimon Doodkin',},w:{h:1},deepone:{f:{o:2}},};
 
 ## extend
-this function merges second object in to the first and returns the fitst object (objects are always reference)
+ this function merges second object in to the first and returns
+ the first object by reference (objects are always reference)
+ it replaces elements if they are exists
 
     // function extend(a, b)
     
-    a=_.extend(a,b);
-    // a={x:2,y:ref{z:'Shimon Doodkin',},w:{h:1,v:3},deepone:{f:{o:2}},};
+    var _ = require('merger');  
+    var obj1={candy:chocolate_obj,  fruit:bannana_obj};
+    var obj2={fruit:orange_obj2, vegitible:cucumber_obj2};
+    _.extend(obj1,obj2);
+    
+    // obj1 = { candy:chocolate_obj,  fruit:orange_obj2 , vegitible:cucumber_obj2 }
 
 ## extenduptolevel - extend up to level
-this function allows you to clone only the 1st level 
-and let the second level to be references.
+ this function clones elements and creates new parent objects when they are missing.
+ after the level is reached it starts to repace objects insted of creating new parents and refilling them.
 
-rememberence trick:
-if you want to modify values after second dot write 2 in the level
-
+ it allows you to clone only the 1st level 
+ and let the second level to be references.
+ 
+ Rememberence trick:
+ If you want to modify values after 2nd dot write 2 in the level
+ 
     // function extenduptolevel(a, b, levels)
+
+    var _ = require('merger');  
+    var a_shared_car={color:'silver',windows:'manual'};
+    var obj1={ has:{ car:a_shared_car    } };
+    var obj2={ has:{ laptop : 'hp_laptop'  } }
+    _.extenduptolevel(obj2,obj1,2);
     
-    a=_.extenduptolevel(a,b,2);
-    // a={x:2,y:ref{z:'Shimon Doodkin',},w:{h:1,v:3},deepone:new{f:ref{o:2}},};
-    a.deepone.somenew=1;
-    b.deepone.othernew=2;
-    // a={x:2,y:ref{z:'Shimon Doodkin',},w:{h:1,v:3},deepone:new{f:ref{o:2},somenew:1},};
-    // b={x:2,y:ref{z:'Shimon Doodkin',},w:{h:1,v:3},deepone:new{f:ref{o:2},othernew:2},};
+    // obj2 = { has:{ laptop:'hp_laptop', car:a_shared_car } }
+    // obj1 = { has:{ car:a_shared_car } }
+    // So if i change she shared car it should shange the other two because they are references:
+    a_shared_car.windows='electric';
+    
+    // obj2 = { has:{ laptop:'hp_laptop', car:{color:'silver',windows:'electric'} } }
+    // obj1 = { has:{ car:{color:'silver',windows:'electric'} } }    
 
 ##  clone
     // function clone(obj)
     //   extend({}, obj);
     
-    c=clone(a);
-    a.somenew=1;
-    c.othernew=2;
-    // a={x:1,w:{h:1},somenew:1,};
-    // c=new{x:1,w:new{h:1},othernew:2,};
+    var _ = require('merger');  
+    var obj1={fruit:'apple'};
+    var newobj1=_.clone(obj1);
+    
+    // obj1    = {fruit:'apple'}
+    // newobj1 = {fruit:'apple'}
 
 ## cloneextend - clone and then extend
-
     // function cloneextend(obj,exteddata)
     //   extend(clone(obj),exteddata);
     
-    c=cloneextend(a,{othernew:2,});
-    // c=new{x:1,w:new{h:1},othernew:2,};
+    var _ = require('merger');  
+    var salad_basic={fruit:'apple'};
+    var new_salad_v1=_.cloneextend(salad_basic,{syrop:'maple syrop'});
+    var new_salad_v2=_.cloneextend(salad_basic,{syrop:'chocolate syrop'});
+    
+    // new_salad_v1 = {fruit:'apple',syrop:'maple syrop'}
+    // new_salad_v2 = {fruit:'apple',syrop:'chocolate syrop'} 
+    // obj3 = {saynumber:7,othernumber:5} // new
+    
 
 ## cloneuptolevel - clone up to level
 
@@ -78,6 +100,16 @@ if you want to modify values after second dot write 2 in the level
     // function cloneuptolevel(obj,level)
     //   extenduptolevel({}, obj, levels)
     
-    c=_.extenduptolevel(a,{deepone:{othernew:2}},2);
-    // c={x:2,y:ref{z:'Shimon Doodkin',},w{h:1,v:3},deepone:new{f:new{o:2},othernew:2},};
- 
+    var _ = require('merger');  
+    var a_shared_car={color:'silver',windows:'manual'};
+    var obj1={ has:{ car:a_shared_car    } };
+    var obj2=_.cloneuptolevel(obj2,2);
+    
+    // obj1 = { has:{ car:a_shared_car } }
+    // obj2 = { has:{ car:a_shared_car } }
+    
+    // Again if i change she shared car it should shange the other two because they are references:
+    a_shared_car.windows='electric';
+    
+    // obj1 = { has:{ car:{color:'silver',windows:'electric'} } }    
+    // obj2 = { has:{ laptop:'hp_laptop', car:{color:'silver',windows:'electric'} } }
