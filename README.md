@@ -72,7 +72,7 @@ if you want to modify values after second dot write 2 in the level
     c=cloneextend(a,{othernew:2,});
     // c=new{x:1,w:new{h:1},othernew:2,};
 
-## cloneuptolevel
+## cloneuptolevel - clone up to level
 
     // // clone only numlevels levels other levels leave references
     // function cloneuptolevel(obj,level)
