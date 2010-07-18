@@ -7,8 +7,14 @@ http://github.com/shimondoodkin/nodejs-clone-extend
 
 ## cool trics - DRY (don't repeat yourself):
 
+    require.paths.unshift(__dirname); //make local paths accessible
+    var _ = require('deps/nodejs-clone-extend/merger');
+      
     var basic_col={type:'string',size:10,default_value:''};
-    var basic_model={name:'somename',cols:{},init:function(){this.do_something();},do_something:function(){consol.log("something");}};
+    var basic_model={ name:'somename', cols:{},
+                      init:function(){this.do_something();},
+                      do_something:function() { consol.log("something"); }
+                    };
     
     var cars=_.cloneextend(basic_model,
     {
