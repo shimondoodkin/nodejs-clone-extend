@@ -5,6 +5,36 @@ http://github.com/shimondoodkin/nodejs-clone-extend
  * It allows you to merge and clone javascript objects easyly.
  * It supports circular references.
 
+## cool trics - DRY (don't repeat yourself):
+
+    var basic_col={type:'string',size:10,default_value:''};
+    var basic_model={name:'somename',cols:{},init:function(){this.do_something();},do_something:function(){consol.log("something");}};
+    
+    var cars=_.cloneextend(basic_model,
+    {
+     name:'cars',
+     cols:
+     {
+      color:_.clone(basic_col),
+      speed:_.cloneextend(basic_col,{type:'number'}),
+     }
+    }
+    );
+    
+    var red_cars=_.cloneextend(cars,{
+     do_something:function: {consol.log("my color is "+this.cols.color.default_value);}
+     color{default_value:'red'}
+    });
+    
+    var blue_cars=_.cloneextend(red_cars,{
+     color{default_value:'blue'}
+    });
+    
+    cars.init();    
+    red_cars.init();    
+    blue_cars.init();    
+
+
 ## include it!
     require.paths.unshift(__dirname); //make local paths accessible
 
@@ -127,3 +157,7 @@ http://github.com/shimondoodkin/nodejs-clone-extend
     
     // obj1 = { has:{ car:{color:'silver',windows:'electric'} } }    
     // obj2 = { has:{ laptop:'hp_laptop', car:{color:'silver',windows:'electric'} } }
+    
+
+    
+    
