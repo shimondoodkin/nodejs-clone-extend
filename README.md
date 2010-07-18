@@ -5,7 +5,7 @@ http://github.com/shimondoodkin/nodejs-clone-extend
  * It allows you to merge and clone javascript objects easyly.
  * It supports circular references.
 
-## cool trics - DRY (don't repeat yourself):
+## cool trics: Simple object inheritance or - Don't repeat yourself! (DRY):
 
     require.paths.unshift(__dirname); //make local paths accessible
     var _ = require('deps/nodejs-clone-extend/merger');
@@ -39,6 +39,8 @@ http://github.com/shimondoodkin/nodejs-clone-extend
     cars.init();    
     red_cars.init();    
     blue_cars.init();    
+
+## cool trics: DRY (don't repeat yourself):
 
 
 ## include it!
