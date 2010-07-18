@@ -51,7 +51,13 @@ output:
     require.paths.unshift(__dirname); //make local paths accessible
 
     // just make it as maybe it is like underline or a short variable name for it;
-    var _ = require('merger');  
+    var _ = require('merger');
+    //or
+    var _ = require('deps/nodejs-clone-extend/merger');
+    //or
+    var merger = require('deps/nodejs-clone-extend/merger');
+    
+      
     var obj1={apples:10};
     var obj2={bananas:20};
     _.extend(obj1,obj2); // merge called extend
