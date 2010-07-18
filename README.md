@@ -6,7 +6,7 @@ http://github.com/shimondoodkin/nodejs-clone-extend
  * It supports circular references.
 
 ## cool trics: DRY (don't repeat yourself):
-I allow you to do simple object inheritance.
+It allow you to do simple object inheritance.
 
     require.paths.unshift(__dirname); //make local paths accessible
     var _ = require('deps/nodejs-clone-extend/merger');
