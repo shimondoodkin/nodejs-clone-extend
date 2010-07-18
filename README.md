@@ -41,6 +41,11 @@ It allow you to do simple object inheritance.
     red_cars.init();    
     blue_cars.init();    
 
+output:
+    something
+    my color is red
+    my color is blue
+
 
 ## include it!
     require.paths.unshift(__dirname); //make local paths accessible
