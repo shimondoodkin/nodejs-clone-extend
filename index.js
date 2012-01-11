@@ -1,4 +1,3 @@
-//var sys = require('sys'); // enable for debugging this module
 function replace(a, b)
 {
  if (!b)
@@ -15,7 +14,7 @@ function replace(a, b)
  }
    
  return a;
-} this.replace=replace;
+} exports.replace=replace;
 
 function add(a, b)
 {
@@ -35,7 +34,7 @@ function add(a, b)
   }
  }
  return a;
-} this.add=add;
+} exports.add=add;
 
 
 function extend(a, b, context, newobjs, aparent, aname, haveaparent) // context is anti circular references mechanism
@@ -89,7 +88,7 @@ function extend(a, b, context, newobjs, aparent, aname, haveaparent) // context 
   a.prototype   = b.prototype*/;
  } 
  return a;
-} this.extend=extend;
+} exports.extend=extend;
 
 function extenduptolevel(a, b, levels, context, newobjs, aparent, aname, haveaparent)
 {
@@ -143,7 +142,7 @@ function extenduptolevel(a, b, levels, context, newobjs, aparent, aname, haveapa
   a.prototype   = b.prototype;*/
  } 
  return a;
-} this.extenduptolevel=extenduptolevel;
+} exports.extenduptolevel=extenduptolevel;
 
 function clone(obj)
 {
@@ -156,7 +155,7 @@ function clone(obj)
   { return extend({}, obj); }
  }
  return obj;
-} this.clone=clone;
+} exports.clone=clone;
 
 function cloneextend(obj,exteddata)
 {
@@ -166,7 +165,7 @@ function cloneextend(obj,exteddata)
   return extend(clone(obj),exteddata);
  }
  return obj;
-} this.cloneextend=cloneextend;
+} exports.cloneextend=cloneextend;
 
 
 function cloneuptolevel(obj,level) // clone only numlevels levels other levels leave references
@@ -178,19 +177,7 @@ function cloneuptolevel(obj,level) // clone only numlevels levels other levels l
   return extenduptolevel({}, obj,level);
  }
  return obj;
-} this.cloneuptolevel=cloneuptolevel;
-
-
-function ObjforEach(object, block, context)
-{
- for (var key in object)
- {
-  if(object.hasOwnProperty(key))
-  {
-   block.call(context, object[key], key, object);
-  }
- }
-}
+} exports.cloneuptolevel=cloneuptolevel;
 
 function foreach(object, block, context)
 {
@@ -205,15 +192,15 @@ function foreach(object, block, context)
    {
     if(object.hasOwnProperty(key))
     {
-     block.call(context, object[key], key, object);
+     if(block.call(context, object[key], key, object)===false)break;
     }
    }
   }  
  }
-} this.foreach=foreach;
+} exports.foreach=foreach;
 
 /*
- hasbugs and useless yet interesting maybe developed layer for dot pathed object transformation:
+ hasbugs and useless, yet interesting maybe developed later for dot pathed object transformation:
  
  {
   'foo.bar':'bluebar',
@@ -229,10 +216,20 @@ function foreach(object, block, context)
    color:'blue'
   }
  }
+ 
+ like:
+ 
+ var config={};
+ cloneextend.dotpath(config,{
+  'foo.bar':'bluebar',
+  'foo.color':'blue'
+ })
+ 
  //
- function dotpath(data,dotkeys,create)
+ function dotpath(data,dotkeys,preserve)
  {
-      if(!create){var create=false;}
+      if(!preserve)preserve=false;
+      var create=!preserve;
       if(create) if(!data) data={};
       var keys= dotkeys.split("."),value=data;
       for (var i=0;i<keys.length;i++)
