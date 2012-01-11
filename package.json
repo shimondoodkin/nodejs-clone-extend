@@ -1,0 +1,16 @@
+{
+  "author": "Shimon Doodkin <helpmepro1@gmail.com> (http://doodkin.com)",
+  "name": "cloneextend",
+  "description": "Object clone & extend with circular references",
+  "version": "0.0.2",
+  "homepage": "https://github.com/shimondoodkin/nodejs-clone-extend/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shimondoodkin/nodejs-clone-extend.git"
+  },
+  "engines": {
+    "node": "~0.2.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
