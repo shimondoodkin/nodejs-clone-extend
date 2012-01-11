@@ -54,13 +54,17 @@ function extend(a, b, context, newobjs, aparent, aname, haveaparent) // context 
    if(b.hasOwnProperty(key))
    { 
    if(typeof a[key] === 'undefined')
-   {
+   {   
     if(typeof b[key] === 'object')
     {
      if( b[key] instanceof Array ) // http://javascript.crockford.com/remedial.html
       {a[key] = extend([], b[key],context,newobjs,a,key,true);}
      else if(b[key]===null)
       {a[key] = null;}
+     else if( b[key] instanceof Date )
+     {
+      a[key]= (new b[key].constructor()).setTime(b[key].getTime())
+     }
      else
       {a[key] = extend({}, b[key],context,newobjs,a,key,true); /*a[key].constructor = b[key].constructor;  a[key].prototype = b[key].prototype;*/ }
     }
@@ -110,6 +114,10 @@ function extenduptolevel(a, b, levels, context, newobjs, aparent, aname, haveapa
      { a[key] = extenduptolevel([], b[key],levels-1,context,newobjs,a,key,true); }
      else if(b[key]===null)
      { a[key] = null; }
+     else if( b[key] instanceof Date )
+     {
+      a[key]= (new b[key].constructor()).setTime(b[key].getTime())
+     }
      else
      { a[key] = extenduptolevel({}, b[key],levels-1,context,newobjs,a,key,true); }
     }
