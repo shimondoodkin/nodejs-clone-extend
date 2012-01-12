@@ -1,3 +1,15 @@
+# Installation
+
+npm:
+
+npm install cloneextend
+
+manual:
+
+cd node_modules
+git clone git://github.com/shimondoodkin/nodejs-clone-extend.git
+mv nodejs-clone-extend cloneextend
+
 http://github.com/shimondoodkin/nodejs-clone-extend
 
 # Node.js Clone Extend
@@ -9,7 +21,7 @@ http://github.com/shimondoodkin/nodejs-clone-extend
 It allow you to do simple object inheritance.
 
     require.paths.unshift(__dirname); //make local paths accessible
-    var _ = require('deps/nodejs-clone-extend/merger');
+    var _ = require('cloneextend');
       
     var basic_col={type:'string',size:10,default_value:''};
     var basic_model={ name:'somename', cols:{},
@@ -48,15 +60,8 @@ output:
 
 
 ## include it!
-    require.paths.unshift(__dirname); //make local paths accessible
 
-    // just make it as maybe it is like underline or a short variable name for it;
-    var _ = require('merger');
-    //or
-    var _ = require('deps/nodejs-clone-extend/merger');
-    //or
-    var merger = require('deps/nodejs-clone-extend/merger');
-    
+    var _ = require('cloneextend');
       
     var obj1={apples:10};
     var obj2={bananas:20};
@@ -68,7 +73,7 @@ output:
     // function replace(a, b)
     //  for (key in b) a[key] = b[key];
 
-    var _ = require('merger');  
+    var _ = require('cloneextend');  
     var obj1={apples:10};
     var obj2={apples:20,bananas:20};
     _.replace(obj1,obj2);
@@ -83,7 +88,7 @@ output:
     //   if(typeof a[key] === 'undefined' || a[key]===null)
     //     a[key] = b[key];
 
-    var _ = require('merger');  
+    var _ = require('cloneextend');  
     var obj1={apples:10};
     var obj2={apples:20,bananas:20};
     _.replace(obj1,obj2);
@@ -97,7 +102,7 @@ output:
 
     // function extend(a, b)
     
-    var _ = require('merger');  
+    var _ = require('cloneextend');  
     var basket1={ apples:[{taste:'sour'},{taste:'sweet'}], fruit:'appricot' };
     var basket2={ fruit:'orange', vegetable:'cucumber'};
     _.extend(basket2,basket1);
@@ -119,7 +124,7 @@ output:
  
     // function extenduptolevel(a, b, levels)
 
-    var _ = require('merger');  
+    var _ = require('cloneextend');  
     var a_shared_car={color:'silver',windows:'manual'};
     var obj1={ has:{ car:a_shared_car    } };
     var obj2={ has:{ laptop : 'hp_laptop'  } }
@@ -137,7 +142,7 @@ output:
     // function clone(obj)
     //   extend({}, obj);
     
-    var _ = require('merger');  
+    var _ = require('cloneextend');  
     var obj1={fruit:'apple'};
     var newobj1=_.clone(obj1);
     
@@ -148,7 +153,7 @@ output:
     // function cloneextend(obj,exteddata)
     //   extend(clone(obj),exteddata);
     
-    var _ = require('merger');  
+    var _ = require('cloneextend');  
     var salad_basic={fruit:'apple'};
     var new_salad_v1=_.cloneextend(salad_basic,{syrop:'maple syrop'});
     var new_salad_v2=_.cloneextend(salad_basic,{syrop:'chocolate syrop'});
@@ -162,7 +167,7 @@ output:
     // function cloneuptolevel(obj,level)
     //   extenduptolevel({}, obj, levels)
     
-    var _ = require('merger');  
+    var _ = require('cloneextend');  
     var a_shared_car={color:'silver',windows:'manual'};
     var obj1={ has:{ car:a_shared_car    } };
     var obj2=_.cloneuptolevel(obj2,2);

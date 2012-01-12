@@ -61,11 +61,9 @@ function extend(a, b, context, newobjs, aparent, aname, haveaparent) // context 
      else if(b[key]===null)
       {a[key] = null;}
      else if( b[key] instanceof Date )
-     {
-      a[key]= (new b[key].constructor()).setTime(b[key].getTime())
-     }
+      { a[key]= new b[key].constructor();a[key].setTime(b[key].getTime());  }
      else
-      {a[key] = extend({}, b[key],context,newobjs,a,key,true); /*a[key].constructor = b[key].constructor;  a[key].prototype = b[key].prototype;*/ }
+      { a[key] = extend({}, b[key],context,newobjs,a,key,true); /*a[key].constructor = b[key].constructor;  a[key].prototype = b[key].prototype;*/ }
     }
     else
     {  a[key] = b[key]; }
@@ -114,9 +112,7 @@ function extenduptolevel(a, b, levels, context, newobjs, aparent, aname, haveapa
      else if(b[key]===null)
      { a[key] = null; }
      else if( b[key] instanceof Date )
-     {
-      a[key]= (new b[key].constructor()).setTime(b[key].getTime())
-     }
+     { a[key]= new b[key].constructor();a[key].setTime(b[key].getTime());  }
      else
      { a[key] = extenduptolevel({}, b[key],levels-1,context,newobjs,a,key,true); }
     }
@@ -151,6 +147,12 @@ function clone(obj)
   if (obj ===null ) { return null; }
   if (obj instanceof Array )
   { return extend([], obj); }
+  else if( obj instanceof Date )
+  {
+   var t= new obj.constructor();
+   t.setTime(obj.getTime());
+   return t;
+  }
   else
   { return extend({}, obj); }
  }
