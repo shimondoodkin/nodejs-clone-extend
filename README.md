@@ -18,8 +18,15 @@ http://github.com/shimondoodkin/nodejs-clone-extend
  * It supports circular references.
 
 The story behind this module is that I was trying to use underscore.js 
-library for this but it did not worked fully as expected, nor any other 
-workaround, so I wrote clone and extend functions from groundup.
+library for cloning and extending objects but it did not worked as expected, 
+nor any other workaround or solution, so I wrote clone and extend 
+functions from groundup for every one's benefit.
+
+##  basic functionality:
+
+    var ce = require('cloneextend');  
+    var o1={a:'a',d:new Date(),n:1,ar:[1,2,3]};
+    var o2=ce.clone(o1); //o2 will hold a copy of o1
 
 ## cool trics: DRY (don't repeat yourself):
 It allow you to do simple object inheritance.
