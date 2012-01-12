@@ -20,14 +20,15 @@ http://github.com/shimondoodkin/nodejs-clone-extend
 The story behind this module is that I was trying to use underscore.js 
 library for cloning and extending objects but it did not worked as expected, 
 nor any other workaround or solution, so I wrote clone and extend 
-functions from groundup for every one's benefit.
+functions from ground up for everyone's benefit.
 
 ##  basic functionality:
 
     var ce = require('cloneextend');  
     var o1={a:'a',d:new Date(),n:1,ar:[1,2,3]};
-    var o2=ce.clone(o1); //o2 will hold a copy of o1
-
+    var o2=ce.clone(o1); //now o2 will hold a copy of o1
+    console.log(o2);
+    
 ## cool trics: DRY (don't repeat yourself):
 It allow you to do simple object inheritance.
 
