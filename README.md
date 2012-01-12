@@ -17,6 +17,10 @@ http://github.com/shimondoodkin/nodejs-clone-extend
  * It allows you to merge and clone javascript objects easyly.
  * It supports circular references.
 
+The story behind this module is that I was trying to use underscore.js 
+library for this but it did not worked fully as expected, nor any other 
+workaround, so I wrote clone and extend functions from groundup.
+
 ## cool trics: DRY (don't repeat yourself):
 It allow you to do simple object inheritance.
 
