@@ -2,23 +2,21 @@
 
 npm:
 
-npm install cloneextend
+    npm install cloneextend
 
 manual:
 
-cd node_modules
-
-git clone git://github.com/shimondoodkin/nodejs-clone-extend.git
-
-mv nodejs-clone-extend cloneextend
-
+    cd node_modules
+    git clone git://github.com/shimondoodkin/nodejs-clone-extend.git
+    mv nodejs-clone-extend cloneextend
 
 http://github.com/shimondoodkin/nodejs-clone-extend
 
 # Node.js Clone Extend
  * It is what you ware searching for ... 
  * It allows you to merge and clone javascript objects easyly.
- * It supports circular references.
+ * It supports circular references
+ * and Dates.
 
 The story behind this module is that I was trying to use underscore.js 
 library for cloning and extending objects but it did not worked as expected, 
@@ -35,7 +33,6 @@ functions from ground up for everyone's benefit.
 ## cool trics: DRY (don't repeat yourself):
 It allow you to do simple object inheritance.
 
-    require.paths.unshift(__dirname); //make local paths accessible
     var _ = require('cloneextend');
       
     var basic_col={type:'string',size:10,default_value:''};
