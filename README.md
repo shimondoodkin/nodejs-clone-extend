@@ -7,8 +7,11 @@ npm install cloneextend
 manual:
 
 cd node_modules
+
 git clone git://github.com/shimondoodkin/nodejs-clone-extend.git
+
 mv nodejs-clone-extend cloneextend
+
 
 http://github.com/shimondoodkin/nodejs-clone-extend
 
@@ -194,5 +197,7 @@ output:
     // obj2 = { has:{ laptop:'hp_laptop', car:{color:'silver',windows:'electric'} } }
     
 
-    
-    
+## Licence
+
+Generaly, 2 close MIT/BSD - Copyright: Shimon Doodkin <helpmepro1@gmail.com> (http://doodkin.com)
+But you can use it as you like, I don't care , Enjoy.
