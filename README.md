@@ -103,7 +103,7 @@ output:
     var _ = require('cloneextend');  
     var obj1={apples:10};
     var obj2={apples:20,bananas:20};
-    _.replace(obj1,obj2);
+    _.add(obj1,obj2);
 
     // obj1 = {apples:10,bananas:20}
 
