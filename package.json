@@ -2,7 +2,7 @@
   "author": "Shimon Doodkin <helpmepro1@gmail.com> (http://doodkin.com)",
   "name": "cloneextend",
   "description": "Clone & Extend Objects with circular references support",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/shimondoodkin/nodejs-clone-extend/",
   "repository": {
     "type": "git",

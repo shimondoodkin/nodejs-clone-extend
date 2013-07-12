@@ -1,3 +1,4 @@
+var hop = Object.prototype.hasOwnProperty;
 function replace(a, b)
 {
  if (!b)
@@ -7,7 +8,7 @@ function replace(a, b)
  var key;
  for (key in b)
  {
-  if(b.hasOwnProperty(key))
+  if(hop.call(b, key))
   { 
    a[key] = b[key];
   }
@@ -25,7 +26,7 @@ function add(a, b)
  var key;
  for (key in b)
  {
-  if(b.hasOwnProperty(key))
+  if(hop.call(b,key))
   { 
    if(typeof a[key] === 'undefined' ||  a[key]===null)
    {
@@ -50,7 +51,7 @@ function extend(a, b, context, newobjs, aparent, aname, haveaparent) // context 
 
  for (key in b)
  {
-   if(b.hasOwnProperty(key))
+   if(hop.call(b,key))
    { 
    if(typeof a[key] === 'undefined')
    {   
@@ -101,7 +102,7 @@ function extenduptolevel(a, b, levels, context, newobjs, aparent, aname, haveapa
  
  for (key in b)
  {
-  if(b.hasOwnProperty(key))
+  if(hop.call(b,key))
   { 
    if(typeof a[key] === 'undefined')
    {
@@ -192,7 +193,7 @@ function foreach(object, block, context)
    if(object)
    for (var key in object)
    {
-    if(object.hasOwnProperty(key))
+    if(hop.call(object,key))
     {
      if(block.call(context, object[key], key, object)===false)break;
     }
