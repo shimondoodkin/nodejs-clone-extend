@@ -238,3 +238,26 @@ function foreach(object, block, context) {
 	}
 }
 exports.foreach = foreach;
+
+function dotpath(data, dotkeys, preserve) {
+	if(!preserve) preserve = false;
+	var create = !preserve;
+	if(create)
+		if(!data) data = {};
+	var value;
+	for(var key in dotkeys) {
+		value = data;
+		var keys = key.split('.');
+		var k = keys.pop();
+		while(keys.length) {
+			var next = keys.shift();
+			if(create)
+				value = value[next] = value[next] || {};
+			else
+				return undefined;
+		}
+		value[k] = dotkeys[key]
+	}
+	return data;
+}
+exports.dotpath = dotpath;
