@@ -240,10 +240,8 @@ function foreach(object, block, context) {
 exports.foreach = foreach;
 
 function dotpath(data, dotkeys, preserve) {
-	if(!preserve) preserve = false;
-	var create = !preserve;
-	if(create)
-		if(!data) data = {};
+	if(!preserve)
+		data = {};
 	var value;
 	for(var key in dotkeys) {
 		value = data;
@@ -251,10 +249,7 @@ function dotpath(data, dotkeys, preserve) {
 		var k = keys.pop();
 		while(keys.length) {
 			var next = keys.shift();
-			if(create)
-				value = value[next] = value[next] || {};
-			else
-				return undefined;
+			value = value[next] = value[next] || {};
 		}
 		value[k] = dotkeys[key]
 	}
