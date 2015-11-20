@@ -127,7 +127,9 @@ output:
 
 ## extend of custom objects
 
-
+ for now the support is partial only for extend and extenduptolevel functions.
+ extendding plain objects containing custom objects
+	
 	function MyObject()
 	{
 		this.someproperty={};
