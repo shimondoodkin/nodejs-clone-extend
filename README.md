@@ -133,7 +133,7 @@ output:
 			this.someproperty={};
 		}
 		
-		//write a cloning strategy by for obj.constructor.name (function name that used to create the object)
+		//write a cloning strategy by obj.constructor.name (function name that used to create the object)
 		ce.howtoclone.MyObject= function(obj) {
 			var cloned=new obj.constructor();
 			//cloned.someproperty=obj.someproperty;
