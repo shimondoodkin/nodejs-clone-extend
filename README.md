@@ -221,13 +221,13 @@ output:
 
 ## tests
 
-    for tests need to instal mocha:
-	
-		```npm install -g mocha```
-	
-	then to run a test
-	
-		```mocha test.js```
+for tests need to instal mocha:
+
+	npm install -g mocha
+
+then to run a test
+
+	mocha test.js
 
 ## Licence
 
