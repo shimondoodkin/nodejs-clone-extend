@@ -127,25 +127,24 @@ output:
 
 ## extend of custom objects
 
-		```javascript
-		function MyObject()
-		{
-			this.someproperty={};
-		}
-		
-		//write a cloning strategy by obj.constructor.name (function name that used to create the object)
-		ce.howtoclone.MyObject= function(obj) {
-			var cloned=new obj.constructor();
-			//cloned.someproperty=obj.someproperty;
-			ce.extend(cloned,obj);
-			return cloned;
-		}
 
-	    var a={obj:new MyObject()};
-			a.obj.someproperty={a:1,b:2,c:{d:3}};
-		var b={};
-		ce.extend(b,a)
-		```
+	function MyObject()
+	{
+		this.someproperty={};
+	}
+	
+	//write a cloning strategy by obj.constructor.name (function name that used to create the object)
+	ce.howtoclone.MyObject= function(obj) {
+		var cloned=new obj.constructor();
+		//cloned.someproperty=obj.someproperty;
+		ce.extend(cloned,obj);
+		return cloned;
+	}
+
+	var a={obj:new MyObject()};
+		a.obj.someproperty={a:1,b:2,c:{d:3}};
+	var b={};
+	ce.extend(b,a)
 	
     
 ## extenduptolevel - extend up to level
