@@ -1,5 +1,7 @@
 var hop = Object.prototype.hasOwnProperty;
 
+exports.howtoclone={};
+
 function replace(a, b) {
 	if(!b) {
 		return a;
@@ -75,8 +77,13 @@ function extend(a, b, context, newobjs, aparent, aname, haveaparent) // context 
 					} else if(b[key] instanceof Date) {
 						a[key] = new b[key].constructor();
 						a[key].setTime(b[key].getTime());
-					} else {
+					} else if(b[key].constructor===Object) { // simple plain objects
 						a[key] = extend({}, b[key], context, newobjs, a, key, true); /*a[key].constructor = b[key].constructor;  a[key].prototype = b[key].prototype;*/
+					} else if(b[key].constructor.name in exports.howtoclone) {  // have custom cloning strategy
+						a[key] = exports.howtoclone[b[key].constructor.name](b[key]);
+					} else {
+						throw new Error('unable to clone  '+context.map(function(a){return '\''+a[1]+'\''}).join('.')+ ' of type \''+ b[key].constructor.name+'\' . \r\n define a custom cloning strategy for this type like: \r\n //var ce=require(\'cloneextend\'); \r\n ce.howtoclone.'+ b[key].constructor.name+'= function(obj){  \r\nvar cloned=new obj.constructor(); \r\n //cloned.somevar=obj.somevar; \r\n // or \r\nce.extend(cloned,obj); \r\n return cloned;\r\n }')
+						//a[key] = extend({}, b[key], context, newobjs, a, key, true); /*a[key].constructor = b[key].constructor;  a[key].prototype = b[key].prototype;*/
 					}
 				} else {
 					a[key] = b[key];
@@ -146,8 +153,13 @@ function extenduptolevel(a, b, levels, context, newobjs, aparent, aname, haveapa
 					} else if(b[key] instanceof Date) {
 						a[key] = new b[key].constructor();
 						a[key].setTime(b[key].getTime());
-					} else {
+					} else if(b[key].constructor===Object) { // simple plain objects
 						a[key] = extenduptolevel({}, b[key], levels - 1, context, newobjs, a, key, true);
+					} else if(b[key].constructor.name in exports.howtoclone) {  // have custom cloning strategy
+						a[key] = exports.howtoclone[b[key].constructor.name](b[key]);
+					} else {
+						throw new Error('unable to clone (in extenduptolevel) '+context.map(function(a){return '\''+a[1]+'\''}).join('.')+ ' of type \''+ b[key].constructor.name+'\' . \r\n define a custom cloning strategy for this type like: \r\n //var ce=require(\'cloneextend\'); \r\n ce.howtoclone.'+ b[key].constructor.name+'= function(obj){  \r\nvar cloned=new obj.constructor(); \r\n //cloned.somevar=obj.somevar; \r\n // or \r\nce.extend(cloned,obj); \r\n return cloned;\r\n }')
+						//a[key] = extend({}, b[key], context, newobjs, a, key, true); /*a[key].constructor = b[key].constructor;  a[key].prototype = b[key].prototype;*/
 					}
 				} else {
 					a[key] = b[key];

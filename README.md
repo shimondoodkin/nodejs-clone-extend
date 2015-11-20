@@ -194,6 +194,16 @@ output:
     // obj2 = { has:{ laptop:'hp_laptop', car:{color:'silver',windows:'electric'} } }
     
 
+## tests
+
+    for tests need to instal mocha:
+	
+		```npm install -g mocha```
+	
+	then to run a test
+	
+		```mocha test.js```
+
 ## Licence
 
 Generaly, 2 close MIT/BSD - Copyright: Shimon Doodkin <helpmepro1@gmail.com> (http://doodkin.com)
