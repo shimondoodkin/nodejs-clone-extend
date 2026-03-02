@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/shimondoodkin/nodejs-clone-extend.png)](http://travis-ci.org/shimondoodkin/nodejs-clone-extend)
 # Installation
 
 npm:
